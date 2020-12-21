@@ -1,17 +1,14 @@
 
-import csv
-from Model.Employee import ModelEmployee
+from Controller.Employee import ControlEmployee
 
-with open('employee.csv', "r", encoding='utf-8') as file:
-    reader = csv.DictReader(file)
-    for item in reader:
-        data = ModelEmployee()
-        data.setName(item['name'])
-        data.setDob(item['dob'])
-        data.setStartDate(item['startdate'])
-        data.setSalary(item['salary'])
 
-        timeWorked = data.getTimeWorked()
+class Bootstrap():
+    def __init__(self):
+        self.File = ControlEmployee()
 
-        print(
-            f'Nhan vien: {data.getName()} - Tuoi: {data.getAge()} - Luong {data.getSalaryCurent()} - Nam lam viec: {timeWorked[0]} nam, {timeWorked[1]} thang, {timeWorked[2]} ngay')
+    def showData(self):
+        self.File.renderData()
+
+
+if __name__ == "__main__":
+    Bootstrap().showData()
