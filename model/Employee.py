@@ -1,5 +1,7 @@
-from datetime import date
-from constants.index import DATE_FORMAT
+from datetime import datetime, date, timedelta
+import math
+
+from Constants.index import DATE_DB, DATE_FORMAT
 
 
 class ModelEmployee():
@@ -41,8 +43,21 @@ class ModelEmployee():
     def getStartDate(self):
         return self.__startDate
 
-    def getAge(self, role):
-        birth_date = self.__dob
+    def getAge(self):
+        birth_date = datetime.strptime(str(self.__dob), DATE_DB)
+        age = (date.today() - birth_date.date()) // timedelta(days=365.2425)
+        return age
 
-        dateCheck = date.today().strftime(DATE_FORMAT)
-        return self.__role
+    def getTimeWorked(self):
+        startDate = datetime.strptime(str(self.__startDate), DATE_DB)
+        differnce = date.today() - startDate.date()
+        year = int(differnce.days / 365.25)
+        month = (differnce.days-year*365.25)//(365.25/12)
+        day = ((differnce.days-year*365.25) - month*(365.25/12))
+        return [int(year), int(month), int(math.ceil(day))]
+
+    def getSalaryCurent(self):
+        year = self.getTimeWorked()[0]
+        coefficientsSalary = 1 + year * 6/100
+        curentValue = float(self.__salary) * coefficientsSalary
+        return round(curentValue, 2)

@@ -1,8 +1,17 @@
 
 import csv
-print("data is ")
+from Model.Employee import ModelEmployee
 
 with open('employee.csv', "r", encoding='utf-8') as file:
     reader = csv.DictReader(file)
-    for row in reader:
-        print(row)
+    for item in reader:
+        data = ModelEmployee()
+        data.setName(item['name'])
+        data.setDob(item['dob'])
+        data.setStartDate(item['startdate'])
+        data.setSalary(item['salary'])
+
+        timeWorked = data.getTimeWorked()
+
+        print(
+            f'Nhan vien: {data.getName()} - Tuoi: {data.getAge()} - Luong {data.getSalaryCurent()} - Nam lam viec: {timeWorked[0]} nam, {timeWorked[1]} thang, {timeWorked[2]} ngay')
