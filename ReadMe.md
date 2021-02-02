@@ -13,6 +13,9 @@
 2. Đáp án của tôi là team A bởi vì:
    - Lý do 1: Trong làm dự án, quan trọng nhất vẫn là tiến độ để bàn giao cho khách hàng
    - Lý do 2: Sau khi giải quyết được vấn đề với khách hàng thì lúc đó ta mới tính đến chuyện cleancode
+3. Mình cần áp dụng để đảm bảo code ai cũng đọc được, và sau này dễ maintain, người khác muốn dùng lại cũng dễ
+4. Đề xuất của Alice
+ 
 
 ## Phần 2: OOP và SOLID
 
